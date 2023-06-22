@@ -143,6 +143,9 @@ class ObjectPersister implements ObjectPersisterInterface
         $documents = [];
         foreach ($objects as $object) {
             $document = $this->transformToElasticaDocument($object);
+            if ([] === $document->getData()) {
+                continue;
+            }
             $document->setDocAsUpsert(true);
             $documents[] = $document;
         }
