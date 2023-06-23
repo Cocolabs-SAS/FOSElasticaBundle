@@ -150,6 +150,10 @@ class ObjectPersister implements ObjectPersisterInterface
             $documents[] = $document;
         }
 
+        if ([] === $documents) {
+            return;
+        }
+
         try {
             $this->index->updateDocuments($documents, $this->options);
         } catch (BulkException $e) {
